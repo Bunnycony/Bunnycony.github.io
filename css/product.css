@@ -121,7 +121,7 @@
             gap: 1rem;
         }
         
-        .btn-primary {
+        .btn-primaryP {
             background: var(--primary-blue);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -134,11 +134,11 @@
             flex: 1;
         }
         
-        .btn-primary:hover {
+        .btn-primaryP:hover {
             background: var(--primary-dark);
         }
         
-        .btn-secondary {
+        .btn-secondaryP {
             background: transparent;
             color: var(--primary-blue);
             padding: 0.75rem 1.5rem;
@@ -151,7 +151,7 @@
             flex: 1;
         }
         
-        .btn-secondary:hover {
+        .btn-secondaryP:hover {
             background: var(--primary-blue);
             color: var(--white);
         }
