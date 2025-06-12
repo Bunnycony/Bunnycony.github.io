@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireless Controller Solutions - Seed Networks</title>
+    <style>
+        :root {
+            --primary-blue: #3b82f6;
+            --secondary-blue: #1e40af;
+            --primary-dark: #1e3a8a;
+            --light-blue: #dbeafe;
+            --success-green: #10b981;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #1f2937;
+            --border-color: #e5e7eb;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-gray);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            padding: 120px 0 80px;
+            margin-top: 70px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Product Navigation Tabs */
+        .product-nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+
+        .product-tabs {
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .product-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 1.5rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--light-blue);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        .tab-button:hover::before {
+            opacity: 0.5;
+        }
+
+        .tab-button.active {
+            color: var(--primary-blue);
+            border-bottom-color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        /* Key Features Section */
+        .features-section {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark-gray);
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 1.25rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-tabs {
+                justify-content: flex-start;
+            }
+
+            .tab-button {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .sub-product-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sub-product-hero h1 {
+                font-size: 2rem;
+            }
+
+            .product-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Sub-product hero styles */
+        .sub-product-hero {
+            background: linear-gradient(135deg, var(--light-blue) 0%, rgba(59, 130, 246, 0.1) 100%);
+            padding: 80px 0;
+        }
+
+        .sub-product-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sub-product-hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .sub-product-hero p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .product-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-item {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .spec-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        /* Content sections */
+        .content-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Feature bullets */
+        .feature-bullets {
+            margin: 2rem 0;
+        }
+
+        .feature-category {
+            margin-bottom: 2rem;
+        }
+
+        .feature-category h3 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #374151;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        /* Specs table */
+        .specs-table {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .specs-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .specs-table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        .product-content-container {
+            min-height: 200px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .product-content-container.loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .product-content-container.loaded {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 0;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">SEED</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+            <a href="#contact" class="contact-btn">Contact Us</a>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Enterprise Wireless Controller Solutions</h1>
+                    <p>Comprehensive wireless management solutions designed for modern enterprises. Our wireless controllers deliver unparalleled performance, security, and scalability for networks of all sizes.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">8K+</div>
+                            <div class="stat-label">Max APs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Wi-Fi 7</div>
+                            <div class="stat-label">Ready</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image">
+                        📡
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Navigation -->
+    <nav class="product-nav">
+        <div class="nav-container">
+            <div class="product-tabs">
+                <button class="tab-button active" onclick="loadProduct('ac3006')" data-product="ac3006">
+                    <span>📊</span>
+                    AC3006
+                </button>
+                <button class="tab-button" onclick="loadProduct('ac4010')" data-product="ac4010">
+                    <span>⚡</span>
+                    AC4010
+                </button>
+                <button class="tab-button" onclick="loadProduct('ac5010')" data-product="ac5010">
+                    <span>🚀</span>
+                    AC5010
+                </button>
+                <button class="tab-button" onclick="loadProduct('ac6010')" data-product="ac6010">
+                    <span>💎</span>
+                    AC6010
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dynamic Product Content -->
+    <div id="product-content-container" class="product-content-container">
+        <!-- Product content will be loaded here -->
+    </div>
+
+    <!-- Key Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Wireless Controllers?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Scalable Management</h3>
+                    <p>Manage from 512 to 8,192 access points with a single controller, supporting enterprise networks of any size with centralized management and monitoring capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Advanced Security</h3>
+                    <p>Built-in WPA3 Enterprise, AES-256 encryption, integrated firewall, and comprehensive access control systems to protect your network infrastructure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Driven Optimization</h3>
+                    <p>Intelligent channel selection, automatic power adjustment, band steering, and spectrum analysis for optimal wireless performance and reduced interference.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Wi-Fi 7 Ready</h3>
+                    <p>Future-proof your network with full Wi-Fi 7 support while maintaining backward compatibility with all existing wireless standards and devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>High Performance</h3>
+                    <p>Local and centralized forwarding modes, seamless roaming, dual-WAN load balancing, and built-in authentication services for maximum efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Easy Management</h3>
+                    <p>Intuitive web interface, heatmap visualization, comprehensive reporting, and cloud-based management options for simplified network administration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Network?</h2>
+                <p>Discover which wireless controller solution is perfect for your enterprise needs</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn-primary">
+                        <span>📞</span>
+                        Contact Sales
+                    </a>
+                    <a href="#demo" class="btn-secondary">
+                        <span>🎯</span>
+                        Schedule Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <div class="contact-info">
+                        <span>📍</span>
+                        <p>123 Enterprise Drive, Tech City, TC 12345</p>
+                    </div>
+                    <div class="contact-info">
+                        <span>📞</span>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contact-info">
+                        <span>✉️</span>
+                        <p>sales@seednetworks.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <a href="ac3006.html">AC3006 Controller</a>
+                    <a href="ac4010.html">AC4010 Controller</a>
+                    <a href="ac5010.html">AC5010 Controller</a>
+                    <a href="ac6010.html">AC6010 Controller</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#documentation">Documentation</a>
+                    <a href="#downloads">Downloads</a>
+                    <a href="#warranty">Warranty</a>
+                    <a href="#support">Technical Support</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#about">About Us</a>
+                    <a href="#careers">Careers</a>
+                    <a href="#partners">Partners</a>
+                    <a href="#news">News</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Seed Networks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Product content loading functionality
+        let currentProduct = 'ac3006'; // Default product
+        
+        // Product data (simulating separate files)
+        const productData = {
+            ac3006: {
+                title: 'AC3006 Enterprise-Grade Wireless Controller',
+                subtitle: 'The AC3006 can manage up to 512 wireless APs with local forwarding, featuring standardization, advanced architecture, multi-service support, high reliability, ease of maintenance, and cost-effectiveness.',
+                specs: [
+                    { label: 'Max APs', value: '512 APs' },
+                    { label: 'Forwarding Mode', value: 'Local Forwarding' },
+                    { label: 'Standards', value: 'Wi-Fi 6/7 Ready' },
+                    { label: 'Management', value: 'Cloud & Local' }
+                ],
+                features: [
+                    {
+                        category: 'Multi-Scenario Networking Adaptability',
+                        items: [
+                            '<strong>Wi-Fi 7 Support:</strong> AC3006 supports IEEE 802.11be protocol, managing Wi-Fi 7 APs and terminals while maintaining backward compatibility with legacy APs (802.11a/b/g/n/ac/ax)',
+                            '<strong>Flexible Topology:</strong> Supports Layer 2/Layer 3 and WAN-based AP-AC networking',
+                            '<strong>Traffic Forwarding Modes:</strong> Centralized forwarding (traffic processed by AC), Local forwarding (traffic processed at AP), DHCP handling flexibility (local or AC-based)',
+                            '<strong>Seamless Roaming:</strong> Supports Layer 2/3 roaming across VLANs even in local forwarding mode'
+                        ]
+                    },
+                    {
+                        category: 'AI-Driven Wireless Optimization',
+                        items: [
+                            '<strong>Auto Channel/Power Adjustment:</strong> Dynamically selects optimal channels and adjusts AP transmit power to reduce interference',
+                            '<strong>Band Steering:</strong> Prioritizes 5GHz for dual-band clients to alleviate 2.4GHz congestion',
+                            '<strong>Heatmap Visualization:</strong> Displays signal strength, SNR, and coverage gaps for AP placement optimization'
+                        ]
+                    }
+                ],
+                specifications: [
+                    { spec: 'Dimensions (W×D×H)', value: '440×300×44mm' },
+                    { spec: 'Weight', value: '≤3.5kg' },
+                    { spec: 'Power Consumption', value: '≤50W' },
+                    { spec: 'Operating Temperature', value: '0°C to +40°C' }
+                ]
+            },
+            ac4010: {
+                title: 'AC4010 Mid-Range Wireless Controller',
+                subtitle: 'The AC4010 delivers enhanced performance for growing enterprises, managing up to 800 wireless APs with advanced features and improved throughput capabilities.',
+                specs: [
+                    { label: 'Max APs', value: '800 APs' },
+                    { label: 'Forwarding Mode', value: 'Hybrid Forwarding' },
+                    { label: 'Standards', value: 'Wi-Fi 7 Optimized' },
+                    { label: 'Management', value: 'Advanced Cloud' }
+                ],
+                features: [
+                    {
+                        category: 'Enhanced Performance',
+                        items: [
+                            '<strong>Increased Capacity:</strong> Supports up to 800 concurrent access points with optimized performance',
+                            '<strong>Advanced QoS:</strong> Intelligent traffic prioritization and bandwidth management',
+                            '<strong>Load Balancing:</strong> Automatic load distribution across multiple APs for optimal performance'
+                        ]
+                    }
+                ],
+                specifications: [
+                    { spec: 'Dimensions (W×D×H)', value: '440×350×44mm' },
+                    { spec: 'Weight', value: '≤4.0kg' },
+                    { spec: 'Power Consumption', value: '≤75W' },
+                    { spec: 'Operating Temperature', value: '0°C to +45°C' }
+                ]
+            },
+            ac5010: {
+                title: 'AC5010 High-Performance Wireless Controller',
+                subtitle: 'The AC5010 provides enterprise-grade performance for large-scale deployments, managing up to 1024 wireless APs with superior reliability and advanced management features.',
+                specs: [
+                    { label: 'Max APs', value: '1024 APs' },
+                    { label: 'Forwarding Mode', value: 'Intelligent Forwarding' },
+                    { label: 'Standards', value: 'Wi-Fi 7 Advanced' },
+                    { label: 'Management', value: 'Enterprise Cloud' }
+                ],
+                features: [
+                    {
+                        category: 'Enterprise-Grade Features',
+                        items: [
+                            '<strong>High Scalability:</strong> Manages up to 1024 access points with enterprise-grade reliability',
+                            '<strong>Advanced Security:</strong> Enhanced WPA3 Enterprise with advanced threat detection',
+                            '<strong>Network Analytics:</strong> Comprehensive network monitoring and analytics capabilities'
+                        ]
+                    }
+                ],
+                specifications: [
+                    { spec: 'Dimensions (W×D×H)', value: '440×400×44mm' },
+                    { spec: 'Weight', value: '≤5.0kg' },
+                    { spec: 'Power Consumption', value: '≤100W' },
+                    { spec: 'Operating Temperature', value: '0°C to +50°C' }
+                ]
+            },
+            ac6010: {
+                title: 'AC6010 Flagship Wireless Controller',
+                subtitle: 'The AC6010 represents the pinnacle of wireless controller technology, managing up to 8192 wireless APs with cutting-edge features for the most demanding enterprise environments.',
+                specs: [
+                    { label: 'Max APs', value: '8192 APs' },
+                    { label: 'Forwarding Mode', value: 'Ultra-Fast Forwarding' },
+                    { label: 'Standards', value: 'Wi-Fi 7 Ultimate' },
+                    { label: 'Management', value: 'AI-Powered Cloud' }
+                ],
+                features: [
+                    {
+                        category: 'Ultimate Performance',
+                        items: [
+                            '<strong>Maximum Scalability:</strong> Industry-leading support for up to 8192 access points',
+                            '<strong>AI-Powered Management:</strong> Machine learning algorithms for predictive network optimization',
+                            '<strong>Zero-Touch Deployment:</strong> Automated configuration and deployment capabilities'
+                        ]
+                    }
+                ],
+                specifications: [
+                    { spec: 'Dimensions (W×D×H)', value: '440×500×88mm' },
+                    { spec: 'Weight', value: '≤8.0kg' },
+                    { spec: 'Power Consumption', value: '≤200W' },
+                    { spec: 'Operating Temperature', value: '0°C to +55°C' }
+                ]
+            }
+        };
+
+        // Function to load product content
+        async function loadProduct(productId) {
+            // Update active tab
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-product="${productId}"]`).classList.add('active');
+
+            // Show loading state
+            const container = document.getElementById('product-content-container');
+            container.classList.add('loading');
+            container.innerHTML = `
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                </div>
+            `;
+
+            // Simulate loading delay (in real implementation, this would be an actual API call or file load)
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Get product data
+            const product = productData[productId];
+            
+            // Generate product content HTML
+            const productHTML = generateProductHTML(product);
+            
+            // Update container
+            container.classList.remove('loading');
+            container.innerHTML = productHTML;
+            container.classList.add('loaded');
+            
+            // Update current product
+            currentProduct = productId;
+            
+            // Smooth scroll to product content
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Function to generate product HTML
+        function generateProductHTML(product) {
+            const specsHTML = product.specs.map(spec => `
+                <div class="spec-item">
+                    <div class="spec-label">${spec.label}</div>
+                    <div class="spec-value">${spec.value}</div>
+                </div>
+            `).join('');
+
+            const featuresHTML = product.features.map(category => `
+                <div class="feature-category">
+                    <h3>${category.category}</h3>
+                    <ul class="feature-list">
+                        ${category.items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            const specificationsHTML = product.specifications.map(spec => `
+                <tr>
+                    <td>${spec.spec}</td>
+                    <td>${spec.value}</td>
+                </tr>
+            `).join('');
+
+            return `
+                <!-- Product Hero -->
+                <section class="sub-product-hero">
+                    <div class="container">
+                        <div class="sub-product-hero-content">
+                            <div>
+                                <h1>${product.title}</h1>
+                                <p>${product.subtitle}</p>
+                                
+                                <div class="product-specs">
+                                    ${specsHTML}
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <div style="width: 100%; height: 300px; background: linear-gradient(45deg, #dbeafe, #e0e7ff); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--primary-blue); border-radius: 10px;">📡</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Product Features -->
+                <section class="content-section">
+                    <div class="container">
+                        <h2 class="section-title">Product Features</h2>
+                        <div class="feature-bullets">
+                            ${featuresHTML}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Specifications -->
+                <section class="content-section" style="background: var(--light-gray);">
+                    <div class="container">
+                        <h2 class="section-title">Hardware Specifications</h2>
+                        <div class="specs-table">
+                            <table>
+                                <tr>
+                                    <th>Specification</th>
+                                    <th>Value</th>
+                                </tr>
+                                ${specificationsHTML}
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Load default product on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProduct(currentProduct);
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards for animation
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
